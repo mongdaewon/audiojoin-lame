@@ -1,10 +1,11 @@
 #!/bin/bash
 # Builds LAME as a *dynamic* xcframework for iOS.
 #
-# Dynamic on purpose: LAME is LGPL 2.1, and §6(a) is satisfied by shipping the library so it can
-# be replaced on its own. Static linking would put us on §6(b), which means distributing this
-# app's object files — not something we're going to do. Nothing about AudioJoin's own source is
-# published; what gets published alongside the app is this script plus the untouched LAME tarball.
+# Dynamic on purpose: LAME is LGPL (version 2 or later; we distribute under 2.1), and §6(a) is
+# satisfied by shipping the library so it can be replaced on its own. Static linking would put us
+# on §6(b), which means distributing this app's object files — not something we're going to do.
+# Nothing about AudioJoin's own source is published; what gets published alongside the app is this
+# script plus the untouched LAME tarball.
 #
 # Output: Vendor/lame.xcframework (git-ignored — run this script to make it)
 set -euo pipefail
