@@ -11,7 +11,8 @@ AudioJoin writes MP3 files with [LAME](https://lame.sourceforge.io/), because Ap
 | File | |
 |---|---|
 | `lame-3.100.tar.gz` | Upstream LAME 3.100, exactly as published by the LAME project |
-| `build-lame.sh` | The script that turns it into the `lame.xcframework` the app embeds |
+| `build-lame.sh` | The script that turns it into the `lame.xcframework` the iOS app embeds |
+| `build-lame-android.sh`, `android/CMakeLists.txt` | The Android build: the `libmp3lame.so` the Android app ships, one per ABI |
 | `COPYING` | The license text shipped inside the tarball |
 
 Checksum of the tarball (also checked by the script):
@@ -45,6 +46,16 @@ Requires Xcode command line tools on macOS.
 ```
 
 It verifies the tarball against the checksum above (downloading it if you removed it), builds device and simulator slices, and writes `Vendor/lame.xcframework` relative to the script's parent directory. That framework is byte-for-byte what the released app embeds, up to the usual compiler nondeterminism.
+
+### Android
+
+Requires the Android NDK (r28) and CMake.
+
+```sh
+./build-lame-android.sh
+```
+
+It verifies the same tarball, unpacks it untouched, and writes `android/out/<abi>/libmp3lame.so` for arm64-v8a, armeabi-v7a and x86_64. The Android app ships LAME the same way: as that separate shared library, loaded next to the app's own code rather than compiled into it, so it can be replaced on its own. The Android build compiles the encoder sources directly and does not use the export list, so the one-line fix above is not needed there; the decoder glue (`mpglib_interface.c`) is left out.
 
 ## Relinking the app against a different LAME
 
