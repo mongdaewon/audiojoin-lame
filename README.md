@@ -1,6 +1,6 @@
 # audiojoin-lame
 
-The source of the MP3 encoder that ships inside [AudioJoin](https://mongdaewon.github.io/apps/audiojoin/), and the script that builds it.
+The source of the MP3 encoder that ships inside [AudioJoin](https://mongdaewon.com/apps/audiojoin/), and the script that builds it.
 
 AudioJoin writes MP3 files with [LAME](https://lame.sourceforge.io/), because Apple does not provide an MP3 encoder on iPhone or iPad. LAME is free software, so this repository exists to make its source available to anyone who has the app — that is what the LGPL asks for.
 
@@ -61,4 +61,4 @@ It verifies the same tarball, unpacks it untouched, and writes `android/out/<abi
 
 If you want AudioJoin built against a newer or differently configured LAME, email us and we will ship an update with it.
 
-mongdaewon@naver.com
+support@mongdaewon.com
